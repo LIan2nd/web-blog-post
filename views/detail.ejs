@@ -1,0 +1,37 @@
+<%- include('partials/header.ejs') %>
+  <div class="detail-post">
+    <div class="head-post">
+      <h2>
+        <%= post.title %>
+      </h2>
+      <p>
+        by
+        <span>
+          <%= post.author %>
+        </span>
+        on <%= post.date %>
+      </p>
+    </div>
+
+    <div class="body-post">
+      <p>
+        <%= post.body %>
+      </p>
+    </div>
+
+    <a href="/<%=post.slug%>/edit">Edit Post</a>
+    &nbsp;
+    <form id="deleteForm" action="/delete/<%=post.id%>" method="post">
+      <button class="aButton" type="button" onclick="confirmDelete()">Delete post</button>
+    </form>
+  </div>
+
+  <script>
+    function confirmDelete() {
+      if (confirm("Are you sure you want to delete this post?")) {
+        document.getElementById('deleteForm').submit();
+      }
+    }
+  </script>
+
+  <%- include('partials/footer.ejs') %>
